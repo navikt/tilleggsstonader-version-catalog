@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'gradle/libs.versions.toml'
+    #paths:
+    #  - 'gradle/libs.versions.toml'
 
 jobs:
   build:
@@ -20,8 +20,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: gradle/wrapper-validation-action@v3.5.0
-      - uses: gradle/gradle-build-action@v3.5.0
+      - uses: gradle/actions/setup-gradle@v4
         env:
           # Eksluder test dependencies
           DEPENDENCY_GRAPH_INCLUDE_CONFIGURATIONS: compileClasspath|runtimeClasspath
@@ -41,8 +40,6 @@ jobs:
           makeLatest: true # Versjonnummerene er ikke semantiske
 
       - name: publish
-        run: ./gradlew publish
+        run: ./gradlew -Pversion=${{ env.RELEASE_TAG }} publish
         env:
-          ORG_GRADLE_PROJECT_version: ${{ env.RELEASE_TAG }}
-          ORG_GRADLE_PROJECT_githubUser: x-access-token
-          ORG_GRADLE_PROJECT_githubPassword: ${{ secrets.GITHUB_TOKEN }
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
