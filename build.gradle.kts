@@ -22,12 +22,10 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = URI("https://maven.pkg.github.com/navikt/dp-version-catalog")
+            url = URI("https://maven.pkg.github.com/navikt/tilleggsstonader-version-catalog")
             credentials {
-                val githubUser: String? by project
-                val githubPassword: String? by project
-                username = githubUser
-                password = githubPassword
+                username = "x-access-token"
+                password = System.getenv("GITHUB_TOKEN")
             }
         }
     }

@@ -29,20 +29,22 @@ jobs:
           dependency-graph: generate-and-submit
 
       - name: Build and generate catalog
-        run: ./gradlew --configuration-cache generateCatalogAsToml
+        run: ./gradlew generateCatalogAsToml
 
       - name: Set release tag
         run: |
           export TAG_NAME="$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M).$(git rev-parse --short=12 HEAD)"
           echo "RELEASE_TAG=$TAG_NAME" >> $GITHUB_ENV
 
-      - uses: ncipollo/release-action@v1
+      - name: "Publiser pakke"
+        uses: softprops/action-gh-release@v2
         with:
-          tag: ${{ env.RELEASE_TAG }}
-          generateReleaseNotes: true
-          makeLatest: true # Versjonnummerene er ikke semantiske
+          name: Release ${{ env.RELEASE_TAG }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          draft: false
+          prerelease: false
 
-      - name: publish
+      - name: "Publiser pakke til GitHub Packages"
         run: ./gradlew -Pversion=${{ env.RELEASE_TAG }} publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
