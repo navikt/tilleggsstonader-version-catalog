@@ -14,3 +14,8 @@ Manuelt
 
 Ny versjon [releases](https://github.com/navikt/tilleggsstonader-version-catalog/releases)
 
+I Intellij kan man kjøre dette for å få oppdaterte versjoner lokalt
+* `gradle generateCatalogAsToml`
+* `Sync All Gradle Projects`
+
+Det er ikke ønskelig å legge inn interne bibliotek, då det skaper sirkulære avhengigheter
