@@ -1,6 +1,5 @@
 [versions]
 token-support = "5.0.29"
-kotlin = "2.1.21"
 spring = "3.4.5"
 ktlint = "1.5.0"
 oracle-jdbc = "23.8.0.25.04"
@@ -10,16 +9,19 @@ logstash-logback-encoder = "8.1"
 mockk = "1.14.2"
 
 # Plugins
+kotlin = "2.1.21"
 spotless = "7.0.3"
 use-latest-versions = "0.2.18"
 ben-manes-versions = "0.52.0"
 cyclonedx = "2.3.0"
+spring-dependency-management = "1.1.7"
 
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" } # kotlin("jvm") version "2.1.21"
 kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin" } # kotlin("plugin.spring") version "2.1.21"
 spring-boot = { id = "org.springframework.boot", version.ref = "spring" } # id("org.springframework.boot") version "3.4.5"
+spring-dependencyManagement = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management" } # id("io.spring.dependency-management") version "1.1.7"
 
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" } # id("com.diffplug.spotless") version "7.0.3"
 useLatestVersions = { id = "se.patrikerdes.use-latest-versions", version.ref = "use-latest-versions" } # id("se.patrikerdes.use-latest-versions") version "0.2.18"

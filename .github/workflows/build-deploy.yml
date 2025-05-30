@@ -48,3 +48,10 @@ jobs:
         run: ./gradlew -Pversion=${{ env.RELEASE_TAG }} publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "Post eventuelle feil til Slack"
+        if: failure()
+        run: |
+          curl -X POST --data "{\"text\": \"Release av $GITHUB_REPOSITORY feilet - $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID\"}" $WEBHOOK_URL
+        env:
+          WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
