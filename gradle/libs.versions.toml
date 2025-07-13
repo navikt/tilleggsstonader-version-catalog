@@ -10,7 +10,7 @@ mockk = "1.14.2"
 
 # Plugins
 kotlin = "2.1.21"
-spotless = "7.0.3"
+spotless = "7.1.0"
 use-latest-versions = "0.2.18"
 ben-manes-versions = "0.52.0"
 cyclonedx = "2.3.0"
