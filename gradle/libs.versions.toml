@@ -1,6 +1,6 @@
 [versions]
 token-support = "5.0.34"
-spring = "3.4.5"
+spring = "3.5.5"
 ktlint = "1.5.0"
 oracle-jdbc = "23.8.0.25.04"
 logstash-logback-encoder = "8.1"
